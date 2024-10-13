@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cv dosa by eman</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Mengatur tinggi body agar sesuai viewport */
+            overflow: hidden; /* Menghindari scroll */
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.jpg'); /* Ganti dengan nama file gambar Anda */
+            background-size: cover;
+            background-position: center;
+            aspect-ratio: 9 / 16; /* Menentukan rasio 9:16 */
+            z-index: -1; /* Menempatkan gambar di belakang konten */
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Mengatur posisi vertikal */
+            align-items: center; /* Mengatur posisi horizontal */
+            height: 100%; /* Memastikan main mengisi seluruh tinggi */
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: black; /* Mengubah warna teks menjadi hitam */
+        }
+
+        .label {
+            color: black; /* Mengubah warna teks label menjadi hitam */
+        }
+
+        form {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        form label {
+            display: block;
+            margin: 20px 0 5px;
+            text-align: left;
+        }
+
+        form input[type="text"],
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        form input[type="text"]::placeholder {
+            color: #999;
+        }
+
+        form input[type="submit"] {
+            background: #00BFFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form input[type="submit"]:hover {
+            background: #1E90FF;
+        }
+
+        .notification {
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+            display: none;
+        }
+
+        .image-gallery {
+            margin-top: 20px;
+        }
+
+        .image-gallery img {
+            width: 100%; /* Menyesuaikan lebar gambar */
+            height: auto; /* Mengatur tinggi otomatis */
+            max-width: 300px; /* Atur ukuran maksimal */
+            border-radius: 5px; /* Sudut membulat */
+            aspect-ratio: 1 / 1; /* Memastikan rasio 1:1 */
+            object-fit: cover; /* Memotong gambar untuk memenuhi area */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <main>
+        <h2>Convert Dosa to Saldo E-Wallet</h2>
+        <form id="conversionForm">
+            <label class="label" for="memeTitle">Dosa Anda:</label>
+            <input type="text" id="memeTitle" name="memeTitle" placeholder="Tuliskan Dosa Anda" required>
+            
+            <label class="label" for="memeImage">Pilih E-Wallet:</label>
+            <select id="memeImage" name="memeImage" required>
+                <option value="">--Pilih E-Wallet--</option>
+                <option value="dana">Dana</option>
+                <option value="gopay">GoPay</option>
+                <option value="ovo">OVO</option>
+            </select>
+            
+            <input type="submit" value="Convert">
+        </form>
+
+        <div class="notification" id="notification"></div>
+        <div class="image-gallery" id="imageGallery" style="display: none;">
+            <img id="randomImage" src="" alt="Meme Image">
+        </div>
+    </main>
+
+    <script>
+        const images = [
+            'image1.jpg', 'image2.jpg', 'image3.jpg',
+            'image4.jpg', 'image5.jpg', 'image6.jpg',
+            'image7.jpg', 'image8.jpg', 'image9.jpg',
+            'image10.jpg'
+        ];
+
+        document.getElementById('conversionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const selectedEWallet = document.getElementById('memeImage').value;
+            const notification = document.getElementById('notification');
+            const randomImage = document.getElementById('randomImage');
+            const imageGallery = document.getElementById('imageGallery');
+            const randomAmount = Math.floor(Math.random() * 100000) + 1;
+
+            if (selectedEWallet) {
+                notification.textContent = `Dosa Anda sebesar ${randomAmount} telah berhasil dikonversi ke saldo ${selectedEWallet.charAt(0).toUpperCase() + selectedEWallet.slice(1)}!`;
+                notification.style.display = 'block';
+
+                // Menampilkan gambar secara acak
+                const randomIndex = Math.floor(Math.random() * images.length);
+                randomImage.src = images[randomIndex];
+                imageGallery.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
